@@ -14,7 +14,7 @@ from plugoo.assets import Asset
 from plugoo.tests import Test
 
 __plugoo__ = "TCP Port Scanner"
-__desc__ = "This a test template to be used to build your own tests"
+__desc__ = "Does a TCP connect scan on the IP:port pairs"
 
 class TCPScanAsset(Asset):
     """
