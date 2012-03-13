@@ -33,6 +33,8 @@ class TestTemplate(Test):
         Fill this up with the tasks that should be performed
         on the "dirty" network and should be compared with the
         control.
+
+        kw['data'] contains the asset data the test should be run using.
         """
         return False
 
