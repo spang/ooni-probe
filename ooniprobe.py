@@ -164,7 +164,8 @@ if __name__ == "__main__":
 
     parser.add_argument('-r', '--run', help='Run a certain test', action='store')
 
-    parser.add_argument('-a', '--asset', help='Use this asset for the test',
+    parser.add_argument('-a', '--assets',
+                        help='Use these (comma-separated) assets for the test',
                         action='store')
 
     parser.add_argument('--runall', help='Run all the tests in the config',
@@ -179,7 +180,8 @@ if __name__ == "__main__":
         o.list_assets()
 
     if args.run:
-        o.run_test(args.run, args.asset)
+        assets = args.assets.split(',') if args.assets else None
+        o.run_test(args.run, assets)
 
     elif args.runall:
         o.run_tests()

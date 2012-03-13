@@ -44,7 +44,7 @@ class TestTemplate(Test):
         """
         return True
 
-def run(ooni):
+def run(ooni, asset_files=None):
     """
     This is the function that will be called by OONI
     and it is responsible for instantiating and passing
@@ -54,8 +54,11 @@ def run(ooni):
 
     # This the assets array to be passed to the run function of
     # the test
-    assets = [TestTemplateAsset(os.path.join(config.main.assetdir, \
-                                            "someasset.txt"))]
+    if asset_files:
+        assets = [TestTemplateAsset(filename) for filename in asset_files]
+    else:
+        assets = [TestTemplateAsset(os.path.join(config.main.assetdir, \
+                                                "someasset.txt"))]
 
     # Instantiate the Test
     thetest = TestTemplate(ooni)
