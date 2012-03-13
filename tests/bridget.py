@@ -357,7 +357,7 @@ Log info file %s
     #def msg(self, severity, message):
     #   print "[%s] %s"%(severity, message)
 
-def run(ooni):
+def run(ooni, asset_files=None):
     """
     Run the test
     """
@@ -365,8 +365,11 @@ def run(ooni):
     config = ooni.config
     urls = []
 
-    bridges = BridgeTAsset(os.path.join(config.main.assetdir, \
-                                        config.tests.tor_bridges))
+    if asset_files:
+        bridges = [BridgeTAsset(asset_files[0])]
+    else:
+        bridges = BridgeTAsset(os.path.join(config.main.assetdir, \
+                                            config.tests.tor_bridges))
 
     bridgelist = [bridges]
 

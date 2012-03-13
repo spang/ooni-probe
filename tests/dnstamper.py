@@ -49,18 +49,20 @@ class DNST(Test):
             print "%s : possible tampering on %s (%s, %s)" % (address, ns, exp, control)
             return (address, ns, exp, control, True)
 
-def run(ooni):
+def run(ooni, asset_files=None):
     """Run the test
     """
     config = ooni.config
     urls = []
 
-    dns_experiment = DNSTAsset(os.path.join(config.main.assetdir, \
-                                            config.tests.dns_experiment))
-    dns_experiment_dns = DNSTAsset(os.path.join(config.main.assetdir, \
-                                                config.tests.dns_experiment_dns))
-
-    assets = [dns_experiment, dns_experiment_dns]
+    if asset_files:
+        assets = [DNSTAsset(filename) for filename in asset_files]
+    else:
+        dns_experiment = DNSTAsset(os.path.join(config.main.assetdir, \
+                                                config.tests.dns_experiment))
+        dns_experiment_dns = DNSTAsset(os.path.join(config.main.assetdir, \
+                                                    config.tests.dns_experiment_dns))
+        assets = [dns_experiment, dns_experiment_dns]
 
     dnstest = DNST(ooni)
     ooni.logger.info("starting test")

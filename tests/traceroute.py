@@ -92,13 +92,16 @@ class Traceroute(Test):
 
         self.traceroute(address)
 
-def run(ooni):
+def run(ooni, asset_files=None):
     """Run the test"""
     config = ooni.config
     urls = []
 
-    traceroute_experiment = TracerouteAsset(os.path.join(config.main.assetdir, \
-                                            config.tests.traceroute))
+    if asset_files:
+        traceroute_experiment = TracerouteAsset(asset_files[0])
+    else:
+        traceroute_experiment = TracerouteAsset(os.path.join(config.main.assetdir, \
+                                                config.tests.traceroute))
 
     assets = [traceroute_experiment]
 
